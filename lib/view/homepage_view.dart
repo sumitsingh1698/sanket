@@ -72,11 +72,17 @@ class _HomepageViewState extends State<HomepageView> {
                   new ListTile(
                     title: new Text('About Photo : '),
                   ),
-                  Center(
-                    child: Text(
-                      '$result',
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor, fontSize: 50),
+                  Container(
+                    padding: EdgeInsets.all(20.0),
+                    child: Center(
+                      child: Text(
+                        result == "nothing" ? "No result found" : '$result',
+                        style: TextStyle(
+                            color: result == "nothing"
+                                ? Colors.red
+                                : Theme.of(context).primaryColor,
+                            fontSize: result == "nothing" ? 20 : 50),
+                      ),
                     ),
                   ),
                 ],
@@ -173,6 +179,7 @@ class _HomepageViewState extends State<HomepageView> {
                                     .then((resultValue) {
                                   Navigator.pop(context);
                                   result = resultValue;
+
                                   _showResult(context);
                                 });
                                 showDialog(
